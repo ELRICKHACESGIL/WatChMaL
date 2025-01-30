@@ -47,6 +47,7 @@ class H5CommonDataset(Dataset, ABC):
 
         self.label_set = None
         self.labels_key = None
+
         self.use_memmap = use_memmap
 
         self.initialized = False
@@ -59,8 +60,9 @@ class H5CommonDataset(Dataset, ABC):
         """
         self.h5_file = h5py.File(self.h5_path, "r")
 
-        # self.event_ids  = np.array(self.h5_file["event_ids"])
-        # self.root_files = np.array(self.h5_file["root_files"])
+        self.event_ids  = np.array(self.h5_file["event_ids"])
+        self.root_files = np.array(self.h5_file["root_files"])
+        
         self.labels = np.array(self.h5_file["labels"])
         self.positions  = np.array(self.h5_file["positions"])
         self.angles     = np.array(self.h5_file["angles"])
